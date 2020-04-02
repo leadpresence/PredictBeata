@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 * */
 
 
-class Fixture{
+class Fixture {
   String home;
   String away;
   String versus='VS';
@@ -17,10 +17,10 @@ class Fixture{
   final Widget spaceHorizontal=SizedBox(width: 10.0,);
 
 
-  Fixture({
+  Fixture(
     this.home,this.away,
     this.logo1,this.logo2,
-});
+);
 
 
 @protected

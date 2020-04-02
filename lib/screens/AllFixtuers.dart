@@ -4,6 +4,7 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:predictbeta/screens/fixtureDetails.dart';
 import '../Fixture.dart';
+import '../PredictionService.dart';
 
 class AllFixtuers extends StatefulWidget {
   @override
@@ -13,39 +14,42 @@ class AllFixtuers extends StatefulWidget {
 class _AllFixtuersState extends State<AllFixtuers> {
   final String url = 'https://reqres.in/api/users/';
   int index;
-  List dt;
-  Fixture fixture = new Fixture();
+//  List dt;
+  Fixture fixture;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    this.getPredictionData();
+    PredictionService _predictionService= new PredictionService();
+    _predictionService.getPredictionTeams();
+//    this.getPredictionData();
   }
+
 
   //=============================================Fetch Data===================================================
-  Future<String> getPredictionData() async {
-    http.Response response = await http.get(Uri.encodeFull(url), headers: {
-      "Accept": "application/json",
-    });
-    Map<String, dynamic> data = convert.jsonDecode(response.body);
-
-    setState(() {
-      data = convert.jsonDecode(response.body);
-      this.dt = data['data']; // the list in the json res.
-      print(dt);
-    });
-    return "Success";
-  }
+//  Future<String> getPredictionData() async {
+//    http.Response response = await http.get(Uri.encodeFull(url), headers: {
+//      "Accept": "application/json",
+//    });
+//    Map<String, dynamic> data = convert.jsonDecode(response.body);
+//
+//    setState(() {
+//      data = convert.jsonDecode(response.body);
+//      this.dt = data['data']; // the list in the json res.
+//      print(dt);
+//    });
+//    return "Success";
+//  }
 
   //=============================================build screen==================================================
 
   @override
   Widget build(BuildContext context) {
-    fixture.home = '';
-    fixture.away = '';
-    fixture.logo2 = Icon(Icons.ac_unit);
-    fixture.logo1 = Icon(Icons.whatshot);
+      fixture.home = '';
+      fixture.away = '';
+      fixture.logo2 = Icon(Icons.ac_unit);
+      fixture.logo1 = Icon(Icons.whatshot);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -89,7 +93,8 @@ class _AllFixtuersState extends State<AllFixtuers> {
                     );
                         //'fixtureDetails');
                   },
-                  child: fixture.loadTeams(
+                  child:
+                  fixture.loadTeams(
                     this.fixture.home = dt[index]['first_name'],
                     this.fixture.away = dt[index]['last_name'],
                   ));
