@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart' as validator;
 import '../constants.dart';
@@ -109,7 +107,7 @@ class _RegisterState extends State<Register> {
                           FlatButton(
                             onPressed: (){
                               setState(() {
-                                Navigator.pushNamed(context, '/');
+                                Navigator.pushNamed(context, 'login');
                               });
                             },
                             child: Text("Already Have An account? Login",style: pBSmallText,),

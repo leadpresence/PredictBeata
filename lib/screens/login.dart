@@ -103,7 +103,7 @@ class _LoginState extends State<Login> {
   void err(){
     print('please agree to terms');
   }
-  //To confirm all details are copltede
+  //To confirm all details are complete
   void success(){
     //
     print('You are good thanks !');

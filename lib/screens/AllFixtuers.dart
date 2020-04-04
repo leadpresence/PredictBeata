@@ -14,33 +14,33 @@ class AllFixtuers extends StatefulWidget {
 class _AllFixtuersState extends State<AllFixtuers> {
   final String url = 'https://reqres.in/api/users/';
   int index;
-//  List dt;
+  List dt;
   Fixture fixture;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    PredictionService _predictionService= new PredictionService();
-    _predictionService.getPredictionTeams();
-//    this.getPredictionData();
+//    PredictionService _predictionService= new PredictionService();
+//    _predictionService.getPredictionTeams();
+    this.getPredictionData();
   }
 
 
   //=============================================Fetch Data===================================================
-//  Future<String> getPredictionData() async {
-//    http.Response response = await http.get(Uri.encodeFull(url), headers: {
-//      "Accept": "application/json",
-//    });
-//    Map<String, dynamic> data = convert.jsonDecode(response.body);
-//
-//    setState(() {
-//      data = convert.jsonDecode(response.body);
-//      this.dt = data['data']; // the list in the json res.
-//      print(dt);
-//    });
-//    return "Success";
-//  }
+  Future<String> getPredictionData() async {
+    http.Response response = await http.get(Uri.encodeFull(url), headers: {
+      "Accept": "application/json",
+    });
+    Map<String, dynamic> data = convert.jsonDecode(response.body);
+
+    setState(() {
+      data = convert.jsonDecode(response.body);
+      this.dt = data['data']; // the list in the json res.
+      print(dt);
+    });
+    return "Success";
+  }
 
   //=============================================build screen==================================================
 
