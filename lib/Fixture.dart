@@ -7,77 +7,101 @@ import 'package:flutter/material.dart';
 * */
 
 
-class Fixture {
+class Fixture  extends StatelessWidget {
   String home;
   String away;
-  String versus='VS';
+  String versus = 'VS';
   Widget logo1;
-  Widget  logo2;
-  final Widget spaceVertical=SizedBox(height: 10.0,);
-  final Widget spaceHorizontal=SizedBox(width: 10.0,);
+  Widget logo2;
+  final Widget spaceVertical = SizedBox(height: 10.0,);
+  final Widget spaceHorizontal = SizedBox(width: 10.0,);
 
 
-  Fixture(
-    this.home,this.away,
-    this.logo1,this.logo2,
-);
+  Fixture(this.home, this.away,this.logo1, this.logo2,);
+@override
+  Widget build(BuildContext context) {
+//@protected
+//  _getTeams(){
+//    home=this.home;
+//    away=this.away;
+//
+//
+//    Widget a=
+
+    return Column(
+      children: <Widget>[
+        Card(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+
+              Expanded(
+                child: Icon(Icons.flag, color: Colors.orange,),
+              ),
+              Expanded(child: Text(home),
+              ),
+              spaceHorizontal,
+
+              Expanded(child: Text(versus, textAlign: TextAlign.center,),),
+              spaceHorizontal,
+
+              Expanded(child: Text(away),
+              ),
+              Expanded(
+                child: Icon(Icons.whatshot, color: Colors.red),
+              ),
 
 
-@protected
-  _getTeams(){
-    home=this.home;
-    away=this.away;
+            ],
+          ),
 
 
-    Widget a=
+        ),
+        Divider()
 
-         Card(
-                  child:  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-
-                      Expanded(
-                        child: Icon(Icons.flag,color: Colors.orange,),
-                      ),
-                      Expanded(child: Text(home),
-                      ),
-                      spaceHorizontal,
-
-                      Expanded(child: Text('VS',textAlign: TextAlign.center,),),
-                      spaceHorizontal,
-
-                      Expanded(child: Text(away),
-                      ),
-                      Expanded(
-                        child: Icon(Icons.whatshot,color:Colors.red),
-                      ),
-
-
-                    ],
-                  )
+      ],
     );
 
-    return a;
+
   }
+}//class fixture
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /*
   * To list and provide fixtures names and logo to views
   *
   * We can make loadTeam have onTap function and
   * have logo parameters for each competing team
   *
-  * */
-  loadTeams(String teamA,String teamB){
-  teamA=this.home;
-  teamB=this.away;
+  loadTeams(String teamA, String teamB) {
+    teamA = this.home;
+    teamB = this.away;
 
-      return Column(
-        children: <Widget>[
-          _getTeams(),
-          Divider()
-        ],
-      );
-
+    return Column(
+      children: <Widget>[
+        _getTeams(),
+        Divider()
+      ],
+    );
   }
+  * */
 
 
 /*
@@ -152,4 +176,3 @@ class Fixture {
 
 
 
-}

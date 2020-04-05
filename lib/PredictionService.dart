@@ -10,6 +10,7 @@ import 'Fixture.dart';
 
 class PredictionService{
   List dt=[];
+  var data;
   static const url='https://reqres.in/api/users/';
 //  Fixture _fixture= new Fixture();
 //  _fixture.
@@ -36,16 +37,16 @@ class PredictionService{
     try {
       http.Response response = await http.get(url);
       Map<String, dynamic> body = json.decode(response.body);
-      var data = body['data'];
+      this.data = body['data'];
       this.dt = data;
       List teammNames = [];
-      for (var teamPair in data) {
-        teammNames.add(new Fixture(
-            data['first_name'],data['first_name'],
-            Icon(Icons.ac_unit),Icon(Icons.whatshot)
-        ));
-      }
-      return data;
+//      for (var teamPair in data) {
+//        teammNames.add(new Fixture(
+//            data['first_name'],data['first_name'],
+//            Icon(Icons.ac_unit),Icon(Icons.whatshot)
+//        ));
+//      }
+      return this.data;
     } catch (e) {}
     return null;
   }

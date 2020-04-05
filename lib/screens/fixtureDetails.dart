@@ -3,15 +3,17 @@ import 'package:flutter/rendering.dart';
 import 'package:predictbeta/constants.dart';
 
 class FixtureDetails extends StatelessWidget {
-  List x=[];
+  List matchDetails=[];
   @override
   Widget build(BuildContext context) {
-     x=ModalRoute.of(context).settings.arguments;
+    //takes incoming data
+
+    matchDetails=ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('${this.x[0]} VS  ${this.x[1]}'),
+          title: Text('${this.matchDetails[0]} VS  ${this.matchDetails[1]}'),
           actions: <Widget>[
             IconButton(
                 onPressed: () {},
@@ -35,7 +37,7 @@ class FixtureDetails extends StatelessWidget {
               children: <Widget>[
                 Text(
                   //display items byu index
-                  'Playing are ${this.x[0]} VS  ${this.x[1]}',
+                  'Playing are ${this.matchDetails[0]} VS  ${this.matchDetails[1]}',
                   style: pBBigText,textAlign: TextAlign.center,
                 )
               ],

@@ -1,31 +1,45 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:core';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:predictbeta/screens/fixtureDetails.dart';
 import '../Fixture.dart';
 import '../PredictionService.dart';
+import '../widgets/helpSheet.dart';
 
-class AllFixtuers extends StatefulWidget {
+class AllFixtures extends StatefulWidget {
   @override
-  _AllFixtuersState createState() => _AllFixtuersState();
+  _AllFixturesState createState() => _AllFixturesState();
 }
 
-class _AllFixtuersState extends State<AllFixtuers> {
+class _AllFixturesState extends State<AllFixtures> {
   final String url = 'https://reqres.in/api/users/';
   int index;
-  List dt;
+  List dt=List();
   Fixture fixture;
+  PredictionService predictionService;
+
+  Widget helpActionSheet(BuildContext context){
+    return Help();
+  }
+  more(){}
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-//    PredictionService _predictionService= new PredictionService();
-//    _predictionService.getPredictionTeams();
     this.getPredictionData();
-  }
+//    this.predictionService.getPredictionTeams()
+//        .then((List<Map<String,dynamic>> expList){
+//      expList.forEach((Map<String, dynamic> expMap){
+//        dt.add(expMap);
+//      });
+//    }
 
+//    );
+  
+  }
 
   //=============================================Fetch Data===================================================
   Future<String> getPredictionData() async {
@@ -33,7 +47,6 @@ class _AllFixtuersState extends State<AllFixtuers> {
       "Accept": "application/json",
     });
     Map<String, dynamic> data = convert.jsonDecode(response.body);
-
     setState(() {
       data = convert.jsonDecode(response.body);
       this.dt = data['data']; // the list in the json res.
@@ -42,21 +55,24 @@ class _AllFixtuersState extends State<AllFixtuers> {
     return "Success";
   }
 
+
   //=============================================build screen==================================================
 
   @override
   Widget build(BuildContext context) {
-      fixture.home = '';
-      fixture.away = '';
-      fixture.logo2 = Icon(Icons.ac_unit);
-      fixture.logo1 = Icon(Icons.whatshot);
-    return Scaffold(
+    Icon l1 = Icon(Icons.ac_unit);
+    Icon l2 = Icon(Icons.whatshot);
+    return
+
+      Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: Text('Fixtures'),
           actions: <Widget>[
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(context: context, builder: helpActionSheet,backgroundColor: Colors.transparent);
+                },
                 padding: EdgeInsets.all(5.0),
                 icon: Icon(
                   Icons.help,
@@ -78,26 +94,21 @@ class _AllFixtuersState extends State<AllFixtuers> {
                   onTap: () {
                     //navigate the individual fixture page
                     print('You tapped number ' + index.toString());
-                    Navigator.push(context,
+                    Navigator.push(
+                        context,
                         MaterialPageRoute(
-                        builder: (context) => FixtureDetails(),
-                          settings: RouteSettings(
-                            //take all the data in a list
-                            arguments:[
-                              this.fixture.home = dt[index]['first_name'],
-                              this.fixture.home = dt[index]['last_name']
-                            ],
+                            builder: (context) => FixtureDetails(),
+                            settings: RouteSettings(
 
-                          )
-                    )
-                    );
-                        //'fixtureDetails');
+                                //take all the data in a list
+                                arguments: [
+                                   dt[index]['first_name'],
+                                  dt[index]['last_name'],
+                                ])));
+                    //'fixtureDetails');
                   },
-                  child:
-                  fixture.loadTeams(
-                    this.fixture.home = dt[index]['first_name'],
-                    this.fixture.away = dt[index]['last_name'],
-                  ));
-            }));
+                  child: new Fixture(dt[index]['first_name'],dt[index]['last_name'],l1, l2));
+            })
+      );
   }
 }

@@ -5,10 +5,7 @@ import './screens/login.dart';
 import './screens/welcome.dart';
 import './screens/register.dart';
 
-void main(){
-  runApp(PredictBeta());
-
-}
+void main()=> runApp(PredictBeta());
 
 
 class PredictBeta extends StatelessWidget {
@@ -25,7 +22,7 @@ class PredictBeta extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         'login': (context)=> Login(),
         'register': (context)=> Register(),
-        'allfixtures':(context)=>AllFixtuers(),
+        'allfixtures':(context)=>AllFixtures(),
         'fixtureDetails':(context)=>FixtureDetails(),
 
       },

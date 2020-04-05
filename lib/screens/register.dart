@@ -25,103 +25,103 @@ class _RegisterState extends State<Register> {
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+           mainAxisAlignment: MainAxisAlignment.center,
 //            crossAxisAlignment: CrossAxisAlignment.center,
 
-            children: <Widget>[
-              Center(
+           children: <Widget>[
+             Center(
 
-                  child: Container(
-                    padding: EdgeInsets.all(25.0),
-                    constraints: BoxConstraints(minHeight: 50.0,minWidth: 40.0),
-                    child: Form(
-                      autovalidate: true,
-                      child: Column(
-                        children: <Widget>[
+                 child: Container(
+                   padding: EdgeInsets.all(25.0),
+                   constraints: BoxConstraints(minHeight: 50.0,minWidth: 40.0),
+                   child: Form(
+                     autovalidate: true,
+                     child: Column(
+                       children: <Widget>[
 
-                          TextFormField(
-                            decoration: InputDecoration(
-                              icon: Icon(Icons.phone_iphone ,color: Colors.orange,),
-                              labelText: 'Mobile Number',
-                            hintText: 'Enter Mobile Number',
-                              border: OutlineInputBorder()
-                          ),keyboardType:TextInputType.phone ,
-                            validator: requiredValidator  ,
-                          ),
+                         TextFormField(
+                           decoration: InputDecoration(
+                             icon: Icon(Icons.phone_iphone ,color: Colors.orange,),
+                             labelText: 'Mobile Number',
+                           hintText: 'Enter Mobile Number',
+                             border: OutlineInputBorder()
+                         ),keyboardType:TextInputType.phone ,
+//                           validator: requiredValidator  ,
+                         ),
 
-                          pBSixeBoxVertical,
-                          TextFormField(
-                            decoration: InputDecoration(
-                              icon: Icon(Icons.email ,color: Colors.blueAccent,),
-                              labelText: 'Email',
-                               hintText: 'Enter Your Email',
-                              border: OutlineInputBorder(),
-                          ),keyboardType:TextInputType.emailAddress ,
-                            validator: validator.EmailValidator(errorText: "enter a valid Email"),
+                         pBSixeBoxVertical,
+                         TextFormField(
+                           decoration: InputDecoration(
+                             icon: Icon(Icons.email ,color: Colors.blueAccent,),
+                             labelText: 'Email',
+                              hintText: 'Enter Your Email',
+                             border: OutlineInputBorder(),
+                         ),keyboardType:TextInputType.emailAddress ,
+//                           validator: validator.EmailValidator(errorText: "enter a valid Email"),
 
-                          ),
+                         ),
 
-                          pBSixeBoxVertical,
+                         pBSixeBoxVertical,
 
-                              TextFormField(decoration: InputDecoration(
-                                  icon: Icon(Icons.vpn_key,color: Colors.red,),
-                                  labelText: 'Password',
+                             TextFormField(decoration: InputDecoration(
+                                 icon: Icon(Icons.vpn_key,color: Colors.red,),
+                                 labelText: 'Password',
 
-                                  border: OutlineInputBorder()
-                              ),
-                                obscureText: true,
-                              ),
-                          pBSixeBoxVertical,
+                                 border: OutlineInputBorder()
+                             ),
+                               obscureText: true,
+//                               validator: validator,
+                             ),
+                         pBSixeBoxVertical,
 
 
-                              TextField(decoration: InputDecoration(
-                                  icon: Icon(Icons.vpn_key,color: Colors.red,),
+                             TextField(decoration: InputDecoration(
+                                 icon: Icon(Icons.vpn_key,color: Colors.red,),
 
-                                  labelText: 'Confirm Password',
-                                  border: OutlineInputBorder()
-                              ),keyboardType:TextInputType.text ,
+                                 labelText: 'Confirm Password',
+                                 border: OutlineInputBorder()
+                             ),keyboardType:TextInputType.text ,
 
-                              ),
+                             ),
 
-                          pBSixeBoxVertical,
+                         pBSixeBoxVertical,
+                       ListTile(leading: Checkbox(
+                         value: states,
+                         onChanged: (bool state){
+                             setState(() {
+                               states=state?true:false;
+                             _disableColor=state?Colors.blueAccent:Colors.grey;
+                           });},
 
-                          CheckboxListTile(
-                            secondary: Text('Agree to the Privacy Policy and Tearms of service',style: pBSmallText),
-                            value:states,
-                            selected: states,
-                            onChanged:  (bool state){
-                              setState(() {
-                                states=state?true:false;
-                              _disableColor=state?Colors.blueAccent:Colors.grey;
-                            });},
-                          ),
-                          pBSixeBoxVertical,
-                              RaisedButton(
-                                color:_disableColor ,
-                                onPressed: (){
-                                 _disableColor==Colors.grey?err():success();
-                                },
-                                child:Text('Submit')
-                              ),
-                          pBSixeBoxVertical,
-                          FlatButton(
-                            onPressed: (){
-                              setState(() {
-                                Navigator.pushNamed(context, 'login');
-                              });
-                            },
-                            child: Text("Already Have An account? Login",style: pBSmallText,),
-                          )
+                       ), title:Text('Agree to the Privacy Policy and Tearms of service',style: pBSmallText) ,),
 
-                        ],
+                         pBSixeBoxVertical,
+                             RaisedButton(
+                               color:_disableColor ,
+                               onPressed: (){
+                                _disableColor==Colors.grey?err():success();
+                               },
+                               child:Text('Submit')
+                             ),
+                         pBSixeBoxVertical,
+                         FlatButton(
+                           onPressed: (){
+                             setState(() {
+                               Navigator.pushNamed(context, 'login');
+                             });
+                           },
+                           child: Text("Already Have An account? Login",style: pBSmallText,),
+                         )
 
-                      ),
-                    ),
-                  )
-              )
-            ],
+                       ],
 
-          ),
+                     ),
+                   ),
+                 )
+             )
+           ],
+
+            ),
         )
     );
 
